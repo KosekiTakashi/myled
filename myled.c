@@ -30,14 +30,23 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
     else if(c == '1'){
         gpio_base[7] = 1 << 25;
 	}
-    //10回点滅
+    //回数点滅
     else if(c == '2'){
-	for(i=0; i < 10; i++){
+	for(i=0; i < 2; i++){
 		gpio_base[7] = 1 << 25;
 		msleep(500);
 		gpio_base[10] = 1 << 25;
 		msleep(500);
 	}
+    }
+    else if(c == '3'){
+        for(i=0; i < 3; i++){
+                gpio_base[7] = 1 << 25;
+                msleep(500);
+                gpio_base[10] = 1 << 25;
+                msleep(500);
+        }
+
     }
     return 1;
 }
